@@ -12,5 +12,10 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   },
-  "packageManager": "pnpm@9.0.3+sha1.ff3ad37177cbd0843e533aab13d5e40a05803b47"
+  "packageManager": "pnpm@9.0.3+sha1.ff3ad37177cbd0843e533aab13d5e40a05803b47",
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.0.19",
+    "@fontsource/karla": "^5.0.19",
+    "freetype-wasm": "^0.0.4"
+  }
 }

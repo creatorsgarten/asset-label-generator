@@ -7,6 +7,16 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@fontsource/jetbrains-mono':
+        specifier: ^5.0.19
+        version: 5.0.19
+      '@fontsource/karla':
+        specifier: ^5.0.19
+        version: 5.0.19
+      freetype-wasm:
+        specifier: ^0.0.4
+        version: 0.0.4
     devDependencies:
       typescript:
         specifier: ^5.2.2
@@ -155,6 +165,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@fontsource/jetbrains-mono@5.0.19':
+    resolution: {integrity: sha512-SdwUuvdfuAvGWRRc4LOFRSmDrpkE+vFUpCtOIOUl1PpXdLfeU//93BZiGf7j/oFGSZJbHAurfux2uLT38/NIjw==}
+
+  '@fontsource/karla@5.0.19':
+    resolution: {integrity: sha512-0OjZTKSxHfYREKvcYfP7ri1RzOVUGNb33lDOt+vZTs17vduIS4tl3R61rVCP1Mt1X1Ba1Y4CNj7WBpsGAgR7HA==}
+
   '@rollup/rollup-android-arm-eabi@4.14.3':
     resolution: {integrity: sha512-X9alQ3XM6I9IlSlmC8ddAvMSyG1WuHk5oUnXGw+yUBs3BFoTizmG1La/Gr8fVJvDWAq+zlYTZ9DBgrlKRVY06g==}
     cpu: [arm]
@@ -242,6 +258,9 @@ packages:
     resolution: {integrity: sha512-WdOOppmUNU+IbZ0PaDiTst80zjnrOkyJNHoKupIcVyU8Lvla3Ugx94VzkQ32Ijqd7UhHJy75gNWDMUekcrSJ6g==}
     engines: {node: '>=12'}
     hasBin: true
+
+  freetype-wasm@0.0.4:
+    resolution: {integrity: sha512-7ldyOzNuhVVJ/FxIlwVUYI+AHRMl8nIHAZ3i7ndeLblJrj61DZU0wZf2lMT2Aqu12kD0gHKZJtylecHRxOzCHA==}
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -373,6 +392,10 @@ snapshots:
   '@esbuild/win32-x64@0.20.2':
     optional: true
 
+  '@fontsource/jetbrains-mono@5.0.19': {}
+
+  '@fontsource/karla@5.0.19': {}
+
   '@rollup/rollup-android-arm-eabi@4.14.3':
     optional: true
 
@@ -448,6 +471,8 @@ snapshots:
       '@esbuild/win32-arm64': 0.20.2
       '@esbuild/win32-ia32': 0.20.2
       '@esbuild/win32-x64': 0.20.2
+
+  freetype-wasm@0.0.4: {}
 
   fsevents@2.3.3:
     optional: true
