@@ -13,9 +13,10 @@ type TemplateArgs = Awaited<ReturnType<typeof createArgs>>;
 const templates: Record<string, (args: TemplateArgs) => Promise<void>> = {};
 
 templates.sticker = async (args) => {
-  const { canvas, ctx, images, fonts, prepare } = args;
+  const { canvas, ctx, images, fonts, params, prepare } = args;
+  const asset = resolveAsset(params);
   prepare(112, 174, "gold/black");
-  const qr = createQr("https://grtn.org/i/CG12345", 3, 3);
+  const qr = createQr(asset.url, 3, 3);
   const xb = Math.floor((canvas.width - qr.size) / 2);
 
   qr.draw(ctx, xb, 1, { invert: true });
@@ -29,7 +30,7 @@ templates.sticker = async (args) => {
     const osctx = osc.getContext("2d")!;
     await fonts.jetbrainsMono
       .withSize(19)
-      .draw(osctx, "CG12345", 11, 116, { letterSpacing: 2 });
+      .draw(osctx, asset.id, 11, 116, { letterSpacing: 2 });
     osctx.globalCompositeOperation = "source-in";
     osctx.fillStyle = "white";
     osctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -45,10 +46,11 @@ templates.sticker = async (args) => {
 
 templates.flag = async (args) => {
   const { canvas, ctx, images, prepare, params, fonts } = args;
+  const asset = resolveAsset(params);
   const diameter = +params.diameter || 5;
   const wrapAround = Math.ceil(20 * diameter);
   prepare(112 * 2 + wrapAround, 112, "black/white");
-  const qr = createQr("https://grtn.org/i/CG12345", 3, 3);
+  const qr = createQr(asset.url, 3, 3);
   const { logo } = images;
   ctx.drawImage(
     logo,
@@ -69,7 +71,7 @@ templates.flag = async (args) => {
   ctx.rotate(-Math.PI / 2);
   await fonts.jetbrainsMono
     .withSize(19)
-    .draw(ctx, "CG12345", 12, 20, { letterSpacing: 2 });
+    .draw(ctx, asset.id, 12, 20, { letterSpacing: 2 });
 };
 
 async function main() {
@@ -129,6 +131,20 @@ async function createArgs(params: Record<string, string>) {
       ctx.fillStyle = "black";
     },
   };
+}
+
+function resolveAsset(params: Record<string, string>) {
+  if (!params.id) {
+    return {
+      url: `https://youtu.be/dQw4w9WgXcQ`,
+      id: "EXAMPLE",
+    };
+  } else {
+    return {
+      url: `https://grtn.org/i/${params.id}`,
+      id: params.id,
+    };
+  }
 }
 
 main();
