@@ -1,7 +1,13 @@
 canvas {
   border: 2px solid red;
+  padding: 2px 2px;
+  background: white;
 }
 
 canvas:hover {
   image-rendering: pixelated;
+}
+
+canvas[data-tape="gold/black"] {
+  filter: invert(100%) brightness(70%) sepia(100%) saturate(200%);
 }

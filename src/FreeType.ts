@@ -25,7 +25,10 @@ export async function createFreeTypeRenderer() {
         glyph: FT_GlyphSlotRec
       ) => {}
     ) => {
-      const cache = new Map();
+      const cache = new Map<
+        string,
+        { glyph: FT_GlyphSlotRec; bitmap: ImageBitmap | null }
+      >();
       async function updateCache(str: string) {
         FreeType.SetFont(face.family_name, face.style_name);
         FreeType.SetCharmap(FreeType.FT_ENCODING_UNICODE);
@@ -50,7 +53,7 @@ export async function createFreeTypeRenderer() {
         );
         for (const [code, glyph] of newGlyphs) {
           const char = String.fromCodePoint(code);
-          await handleNewGlyph(code, char, glyph);
+          await Promise.resolve(handleNewGlyph(code, char, glyph));
           cache.set(char, {
             glyph,
             bitmap: glyph.bitmap.imagedata
@@ -61,7 +64,7 @@ export async function createFreeTypeRenderer() {
       }
 
       const draw = async (
-        ctx: CanvasRenderingContext2D,
+        ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
         str: string,
         offsetx: number,
         offsety: number,
