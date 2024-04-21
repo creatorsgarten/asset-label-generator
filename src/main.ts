@@ -1,6 +1,7 @@
 import interUrl from "@fontsource/inter/files/inter-latin-600-normal.woff2";
 import jetbrainsMonoUrl from "@fontsource/jetbrains-mono/files/jetbrains-mono-latin-600-normal.woff2?url";
-import { createFreeTypeRenderer } from "./FreeType";
+import { createFreeTypeRenderer, createGlyphFlipper } from "./FreeType";
+import { allowDraggingOut } from "./allowDraggingOut";
 import { createQr } from "./createQr";
 import customQrUrl from "./custom_qr.png";
 import customQrInvertedUrl from "./custom_qr_inverted.png";
@@ -24,12 +25,18 @@ templates.sticker = async (args) => {
   const customQr = await loadImage(customQrInvertedUrl);
   ctx.drawImage(customQr, xb + 9, 1 + 9);
 
-  ctx.fillRect(xb, 1 + qr.size, qr.size, 16);
+  ctx.fillRect(xb, 1 + qr.size, qr.size, 18);
   {
     const osc = new OffscreenCanvas(canvas.width, canvas.height);
     const osctx = osc.getContext("2d")!;
     await fonts.jetbrainsMono
-      .withSize(19)
+      .withSize(19, (code, char, glyph) => {
+        if (char === "0") {
+          const { flip } = createGlyphFlipper(glyph);
+          flip(3, 6);
+          flip(3, 7);
+        }
+      })
       .draw(osctx, asset.id, 11, 116, { letterSpacing: 2 });
     osctx.globalCompositeOperation = "source-in";
     osctx.fillStyle = "white";
@@ -40,8 +47,20 @@ templates.sticker = async (args) => {
   ctx.drawImage(
     images.logotype,
     Math.floor((canvas.width - images.logotype.width) / 2),
-    xb + qr.size + 17
+    xb + qr.size + 19
   );
+  {
+    ctx.save();
+    ctx.fillStyle = "white";
+    ctx.fillRect(xb, 1, 1, 2);
+    ctx.fillRect(xb, 1, 2, 1);
+    ctx.fillRect(xb + qr.size - 1, 1, 1, 2);
+    ctx.fillRect(xb + qr.size - 2, 1, 2, 1);
+    ctx.fillRect(xb, 19 + qr.size - 2, 1, 2);
+    ctx.fillRect(xb, 19 + qr.size - 1, 2, 1);
+    ctx.fillRect(xb + qr.size - 1, 19 + qr.size - 2, 1, 2);
+    ctx.fillRect(xb + qr.size - 2, 19 + qr.size - 1, 2, 1);
+  }
 };
 
 templates.flag = async (args) => {
@@ -116,6 +135,9 @@ async function createResources() {
 async function createArgs(params: Record<string, string>) {
   const canvas = document.createElement("canvas");
   document.body.appendChild(canvas);
+  allowDraggingOut(canvas, () => {
+    return `${params.id || "image"}.png`;
+  });
   const ctx = canvas.getContext("2d")!;
   return {
     ...(await createResources()),

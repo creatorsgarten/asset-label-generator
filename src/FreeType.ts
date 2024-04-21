@@ -133,3 +133,13 @@ export async function createFreeTypeRenderer() {
   };
   return { loadFont };
 }
+
+export function createGlyphFlipper(glyph: FT_GlyphSlotRec) {
+  const flip = (x: number, y: number) => {
+    const imageData = glyph.bitmap.imagedata;
+    if (!imageData) return;
+    const index = (y * imageData.width + x) * 4;
+    imageData.data[index + 3] = 255 - imageData.data[index + 3];
+  };
+  return { flip };
+}
