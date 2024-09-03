@@ -1,22 +1,36 @@
 {
-  "name": "fresh-app",
+  "name": "asset-label-generator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc -b && vite build",
+    "lint": "biome ci",
+    "format": "biome check --write",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0"
-  },
-  "packageManager": "pnpm@9.0.3+sha1.ff3ad37177cbd0843e533aab13d5e40a05803b47",
   "dependencies": {
-    "@fontsource/inter": "^5.0.18",
-    "@fontsource/jetbrains-mono": "^5.0.19",
-    "@fontsource/karla": "^5.0.19",
-    "freetype-wasm": "^0.0.4"
-  }
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/inter": "^5.0.20",
+    "@fontsource/jetbrains-mono": "^5.0.21",
+    "@nanostores/react": "^0.7.3",
+    "framer-motion": "^11.4.0",
+    "freetype-wasm": "^0.0.4",
+    "nanostores": "^0.11.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.3",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "globals": "^15.9.0",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  },
+  "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }

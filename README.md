@@ -17,7 +17,7 @@ pnpm dev
 - Append the following URL parameters.
 
   | Parameter  | Applies to     | Description                     | Example   |
-  | ---------- | -------------- | ------------------------------- | --------- |
+    | ---------- | -------------- | ------------------------------- | --------- |
   | `id`       | All templates  | The ID to print on the label.   | `CG00000` |
   | `diameter` | Flag templates | The diameter of the flag in mm. | `10`      |
 
