@@ -21,7 +21,7 @@ export const PrintRender: FunctionComponent = () => {
 
     if (type === 'sticker') drawSticker(canvas, ctx, tagId, url)
     else if (type === 'flag') drawFlag(canvas, ctx, tagId, url, diameter)
-  }, [type, tagId, canvasRef, diameter])
+  }, [type, tagId, canvasRef, diameter, url])
 
   return <canvas ref={canvasRef} />
 }
