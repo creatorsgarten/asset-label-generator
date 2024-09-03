@@ -9,7 +9,8 @@ import customQrInvertedUrl from '../assets/custom_qr_inverted.png'
 export const drawSticker = async (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
-  tagId: string
+  tagId: string,
+  url: string
 ) => {
   /**
    * Prepare the canvas
@@ -21,7 +22,7 @@ export const drawSticker = async (
   ctx.fillRect(0, 0, 112, 174)
   ctx.fillStyle = 'black'
 
-  const qr = createQr(resolveUrlByTagId(tagId), 3, 3)
+  const qr = createQr(resolveUrlByTagId(url, tagId), 3, 3)
   const xb = Math.floor((canvas.width - qr.size) / 2)
 
   qr.draw(ctx, xb, 1, { invert: true })

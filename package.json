@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.13.0",
     "@fontsource/inter": "^5.0.20",
     "@fontsource/jetbrains-mono": "^5.0.21",
+    "@nanostores/persistent": "^0.10.2",
     "@nanostores/react": "^0.7.3",
     "framer-motion": "^11.4.0",
     "freetype-wasm": "^0.0.4",

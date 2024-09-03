@@ -1,2 +1,2 @@
-export const resolveUrlByTagId = (tagId: string) =>
-  `https://l.riffy.in.th/i/${tagId}`
+export const resolveUrlByTagId = (domain: string, tagId: string) =>
+  `https://${domain}/${tagId}`

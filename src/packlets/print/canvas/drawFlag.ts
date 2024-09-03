@@ -9,6 +9,7 @@ export const drawFlag = async (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   tagId: string,
+  url: string,
   diameter: number
 ) => {
   const wrapAround = Math.ceil(20 * diameter)
@@ -25,7 +26,7 @@ export const drawFlag = async (
   ctx.fillRect(0, 0, width, height)
   ctx.fillStyle = 'black'
 
-  const qr = createQr(resolveUrlByTagId(tagId), 3, 3)
+  const qr = createQr(resolveUrlByTagId(url, tagId), 3, 3)
 
   const [customQr, { images, fonts }] = await Promise.all([
     loadImage(customQrUrl),

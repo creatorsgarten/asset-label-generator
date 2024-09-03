@@ -1,21 +1,13 @@
 import { FunctionComponent, useEffect, useRef } from 'react'
+import { useInputAtom } from '../dashboard/inputAtom'
 import { allowDraggingOut } from './canvas/allowDraggingOut'
 import { drawFlag } from './canvas/drawFlag'
 import { drawSticker } from './canvas/drawSticker'
 
 import './render.css'
 
-interface Props {
-  type: 'sticker' | 'flag'
-  id: string
-  diameter: number
-}
-
-export const PrintRender: FunctionComponent<Props> = ({
-  type,
-  id,
-  diameter,
-}) => {
+export const PrintRender: FunctionComponent = () => {
+  const { type, diameter, tagId, url } = useInputAtom()
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -23,13 +15,13 @@ export const PrintRender: FunctionComponent<Props> = ({
 
     const canvas = canvasRef.current as HTMLCanvasElement
 
-    allowDraggingOut(canvas, () => `${id || 'image'}.png`)
+    allowDraggingOut(canvas, () => `${tagId || 'image'}.png`)
 
     const ctx = canvas.getContext('2d')!
 
-    if (type === 'sticker') drawSticker(canvas, ctx, id)
-    else if (type === 'flag') drawFlag(canvas, ctx, id, diameter)
-  }, [type, id, canvasRef, diameter])
+    if (type === 'sticker') drawSticker(canvas, ctx, tagId, url)
+    else if (type === 'flag') drawFlag(canvas, ctx, tagId, url, diameter)
+  }, [type, tagId, canvasRef, diameter])
 
   return <canvas ref={canvasRef} />
 }
