@@ -11,7 +11,7 @@ import { inputAtom, useInputAtom } from '../inputAtom'
 export const DiameterInput = () => {
   const { type, diameter } = useInputAtom()
 
-  if (type !== 'sticker') return null
+  if (type == 'sticker') return null
 
   return (
     <HStack spacing={3}>
