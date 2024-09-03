@@ -9,6 +9,7 @@ import { FunctionComponent } from 'react'
 import { PrintRender } from '../print/Render'
 import { Descriptor } from './Descriptor'
 import { DiameterInput } from './input/Diameter'
+import { InvertInput } from './input/Invert'
 import { TagIdInput } from './input/TagId'
 import { TypeInput } from './input/Type'
 import { UrlInput } from './input/Url'
@@ -22,6 +23,7 @@ export const App: FunctionComponent = () => {
           <TypeInput />
           <TagIdInput />
           <UrlInput />
+          <InvertInput />
           <DiameterInput />
         </VStack>
         <Descriptor />

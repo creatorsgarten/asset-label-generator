@@ -10,6 +10,7 @@ export const drawFlag = async (
   ctx: CanvasRenderingContext2D,
   tagId: string,
   url: string,
+  invert: boolean,
   diameter: number
 ) => {
   const wrapAround = Math.ceil(20 * diameter)
@@ -22,6 +23,9 @@ export const drawFlag = async (
   canvas.width = width
   canvas.height = height
   canvas.dataset.tape = 'black/white'
+
+  if (invert) ctx.filter = 'invert(1)'
+
   ctx.fillStyle = 'white'
   ctx.fillRect(0, 0, width, height)
   ctx.fillStyle = 'black'

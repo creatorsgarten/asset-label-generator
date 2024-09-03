@@ -7,6 +7,7 @@ interface Options {
   tagId: string
   diameter: number
   url: string
+  invert: boolean
 }
 
 export const inputAtom = persistentMap<Options>(
@@ -16,6 +17,7 @@ export const inputAtom = persistentMap<Options>(
     tagId: 'CG00123',
     diameter: 5,
     url: 'grtn.org/i',
+    invert: false,
   },
   {
     encode: JSON.stringify,

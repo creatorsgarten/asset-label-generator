@@ -10,7 +10,8 @@ export const drawSticker = async (
   canvas: HTMLCanvasElement,
   ctx: CanvasRenderingContext2D,
   tagId: string,
-  url: string
+  url: string,
+  invert: boolean
 ) => {
   /**
    * Prepare the canvas
@@ -18,6 +19,9 @@ export const drawSticker = async (
   canvas.width = 112
   canvas.height = 174
   canvas.dataset.tape = 'gold/black'
+
+  if (invert) ctx.filter = 'invert(1)'
+
   ctx.fillStyle = 'white'
   ctx.fillRect(0, 0, 112, 174)
   ctx.fillStyle = 'black'

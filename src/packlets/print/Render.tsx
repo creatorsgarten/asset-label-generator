@@ -7,7 +7,7 @@ import { drawSticker } from './canvas/drawSticker'
 import './render.css'
 
 export const PrintRender: FunctionComponent = () => {
-  const { type, diameter, tagId, url } = useInputAtom()
+  const { type, diameter, tagId, url, invert } = useInputAtom()
   const canvasRef = useRef(null)
 
   useEffect(() => {
@@ -19,9 +19,10 @@ export const PrintRender: FunctionComponent = () => {
 
     const ctx = canvas.getContext('2d')!
 
-    if (type === 'sticker') drawSticker(canvas, ctx, tagId, url)
-    else if (type === 'flag') drawFlag(canvas, ctx, tagId, url, diameter)
-  }, [type, tagId, canvasRef, diameter, url])
+    if (type === 'sticker') drawSticker(canvas, ctx, tagId, url, invert)
+    else if (type === 'flag')
+      drawFlag(canvas, ctx, tagId, url, invert, diameter)
+  }, [type, tagId, canvasRef, diameter, url, invert])
 
   return <canvas ref={canvasRef} />
 }
