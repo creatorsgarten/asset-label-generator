@@ -36,11 +36,11 @@ jobs:
       - name: configure
         uses: actions/configure-pages@v4
       - name: upload
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dist
       - name: deploy
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
       - name: 'logging'
         run: echo "Deployed at ${{ steps.deployment.outputs.page_url }}"
