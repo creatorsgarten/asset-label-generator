@@ -2,6 +2,7 @@ import { FunctionComponent, useEffect, useRef } from 'react'
 import { useInputAtom } from '../dashboard/inputAtom'
 import { allowDraggingOut } from './canvas/allowDraggingOut'
 import { drawFlag } from './canvas/drawFlag'
+import { drawMini } from './canvas/drawMini'
 import { drawSticker } from './canvas/drawSticker'
 
 import './render.css'
@@ -22,6 +23,7 @@ export const PrintRender: FunctionComponent = () => {
     if (type === 'sticker') drawSticker(canvas, ctx, tagId, url, invert)
     else if (type === 'flag')
       drawFlag(canvas, ctx, tagId, url, invert, diameter)
+    else if (type === 'mini') drawMini(canvas, ctx, tagId, url, invert)
   }, [type, tagId, canvasRef, diameter, url, invert])
 
   return <canvas ref={canvasRef} />

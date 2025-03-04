@@ -14,6 +14,7 @@ export const TypeInput = () => {
       >
         <option value="sticker">Sticker</option>
         <option value="flag">Flag</option>
+        <option value="mini">Mini</option>
       </Select>
     </HStack>
   )

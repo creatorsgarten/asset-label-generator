@@ -6,20 +6,20 @@ export function allowDraggingOut(
   canvas: HTMLCanvasElement,
   getFileName: () => string | null | undefined
 ) {
-  canvas.draggable = true;
-  canvas.ondragstart = (e) => {
-    const fileName = getFileName();
+  canvas.draggable = true
+  canvas.ondragstart = e => {
+    const fileName = getFileName()
     if (!fileName) {
-      return;
+      return
     }
     if (!e.dataTransfer) {
-      return;
+      return
     }
-    e.dataTransfer.clearData();
-    const dataUrl = canvas.toDataURL();
+    e.dataTransfer.clearData()
+    const dataUrl = canvas.toDataURL()
     e.dataTransfer.setData(
-      "DownloadURL",
-      ["image/png", fileName, dataUrl].join(":")
-    );
-  };
+      'DownloadURL',
+      ['image/png', fileName, dataUrl].join(':')
+    )
+  }
 }

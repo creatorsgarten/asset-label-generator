@@ -1,1 +1,1 @@
-export type PrintType = 'sticker' | 'flag'
+export type PrintType = 'sticker' | 'flag' | 'mini'
